@@ -7,14 +7,17 @@ op file:
 
 *********************
 >> Employee.query2
+
    (0.5ms)  SELECT name,email,streat,city,pincode FROM "employees" LEFT OUTER JOIN "addresses" ON "addresses"."imageable_id" = "employees"."id" AND "addresses"."imageable_type" = ? WHERE "employees"."name" = ?  [["imageable_type", "Employee"], ["name", "Mr Bhawalkar"]]
 => [["Mr Bhawalkar", "kmln@gmail.com", "MG road", "Pune", 43278]]
 *************************
  Employee.query3
+ 
   Employee Load (0.4ms)  SELECT name,salary FROM "employees" WHERE (salary>20 AND salary <50)
 => #<ActiveRecord::Relation [#<Employee id: nil, name: "Mr Kale", salary: 37>, #<Employee id: nil, name: "Mr Bhawalkar", salary: 21>, #<Employee id: nil, name: "Mr Barkund", salary: 47>]>
 *********************
 >> Employee.validate?
+
    (0.2ms)  begin transaction
   Company Load (0.2ms)  SELECT  "companies".* FROM "companies" WHERE "companies"."id" = ? LIMIT ?  [["id", 2], ["LIMIT", 1]]
   Employee Exists (0.1ms)  SELECT  1 AS one FROM "employees" WHERE "employees"."email" = ? LIMIT ?  [["email", "xyzgmail.com"], ["LIMIT", 1]]
